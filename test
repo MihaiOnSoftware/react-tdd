@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+npm test --prefix ./test-driven-fizzbuzz/ && npm test --prefix ./test-driven-palindromes/
