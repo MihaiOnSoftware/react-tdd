@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+npm run test && git add . && git commit -m "." || git reset HEAD --hard && git clean -f
