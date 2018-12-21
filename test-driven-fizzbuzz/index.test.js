@@ -7,5 +7,10 @@ describe('fizzBuzz()', () => {
   });
   it('returns "Fizz" for multiples of 3 and not 5', () => {
     expect(fizzBuzz(3)).toBe('Fizz');
+    expect(fizzBuzz(6)).toBe('Fizz');
+  });
+  it('returns "Buzz" for multiples of 5 and not 3', () => {
+    expect(fizzBuzz(5)).toBe('Buzz');
+    expect(fizzBuzz(10)).toBe('Buzz');
   });
 })
