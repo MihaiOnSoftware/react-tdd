@@ -13,4 +13,8 @@ describe('fizzBuzz()', () => {
     expect(fizzBuzz(5)).toBe('Buzz');
     expect(fizzBuzz(10)).toBe('Buzz');
   });
+  it("returns the number if it's not a multiple of 5 or 3", () => {
+    expect(fizzBuzz(7)).toBe('7');
+    expect(fizzBuzz(23)).toBe('23');
+  });
 })
