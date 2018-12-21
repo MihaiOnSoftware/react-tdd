@@ -12,7 +12,7 @@ module.exports = string => {
       left++, right--
     ) {
       var equal = string.charAt(left) == string.charAt(right);
-      stillPalindrome = stillPalindrome && equal;
+      stillPalindrome = equal;
     }
     return stillPalindrome;
   };
