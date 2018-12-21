@@ -1,4 +1,7 @@
 // palindromes.js
 module.exports = string => {
-  return [string.toLowerCase().replace(/[^a-z]/g, "")];
+  const cleanString = string => {
+    return string.toLowerCase().replace(/[^a-z]/g, "");
+  };
+  return [cleanString(string)];
 };
