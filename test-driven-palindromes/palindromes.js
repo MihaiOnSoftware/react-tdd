@@ -1,4 +1,4 @@
 // palindromes.js
-module.exports = str => {
-  return [str];
+module.exports = string => {
+  return [string.toLowerCase()];
 };
