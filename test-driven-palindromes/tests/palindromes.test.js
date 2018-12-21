@@ -20,4 +20,9 @@ describe("palindromes()", () => {
       "amanaplanacanalpanama",
     ]);
   });
+  it("detects palindromes inside a string", () => {
+    var input = "What number is never odd or even, asked the Sphinx?";
+    var result = palindromes(input);
+    expect(result).toEqual(["neveroddoreven"]);
+  });
 });
