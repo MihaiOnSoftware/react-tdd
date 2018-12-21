@@ -1,6 +1,7 @@
-// palindrome.test.js
-describe('palindrome()', () => {
-    it('is OK', () => {
-      expect.anything()
+// palindromes.test.js
+const palindromes = require('./palindromes')
+describe('palindromes()', () => {
+    it('correctly identifies one-word palindromes', () => {
+        expect(palindromes('madam')).toEqual(['madam']);
     });
 });
