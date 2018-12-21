@@ -12,4 +12,12 @@ describe("palindromes()", () => {
   it("removes all non-letter characters", () => {
     expect(palindromes("m a d a m!")).toEqual(["madam"]);
   });
+  it("returns an empty array when given no palindromes", () => {
+    expect(palindromes("tic tac toe")).toEqual([]);
+  });
+  it("detects multi-word palindromes", () => {
+    expect(palindromes("A man, a plan, a canal, Panama")).toEqual([
+      "amanaplanacanalpanama",
+    ]);
+  });
 });
