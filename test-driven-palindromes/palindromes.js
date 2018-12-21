@@ -4,20 +4,17 @@ module.exports = string => {
     return string.toLowerCase().replace(/[^a-z]/g, "");
   };
 
+  const isPalindromeRecursive = (string, stillPalindrome) => {
+    if (!stillPalindrome || !string) return stillPalindrome;
+    var equal = string.charAt(0) == string.charAt(string.length - 1);
+    return isPalindromeRecursive(string.substr(1, string.length - 2), equal);
+  };
+
   const isPalindrome = string => {
-    var stillPalindrome = true;
-    for (
-      var left = 0, right = string.length - 1;
-      stillPalindrome && left < right;
-      left++, right--
-    ) {
-      var equal = string.charAt(left) == string.charAt(right);
-      stillPalindrome = equal;
-    }
-    return stillPalindrome;
+    return isPalindromeRecursive(string, true);
   };
 
   var cleaned = cleanString(string);
-  if (isPalindrome(cleaned)) return [cleaned];
+  if (isPalindrome(cleaned, true)) return [cleaned];
   return [];
 };
