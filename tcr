@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+message="."
+if [ "$1" != "" ]; then
+  message=$1
+fi
+
+npm run test && git add . && git commit -m "$message" || git reset HEAD --hard && git clean -f

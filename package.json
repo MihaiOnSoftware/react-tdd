@@ -1,0 +1,15 @@
+{
+  "name": "react-tdd",
+  "version": "1.0.0",
+  "description": "Learning from https://pragprog.com/book/tbreact/test-driven-react",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test --prefix ./test-driven-fizzbuzz/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-sirealism:Sirealism/react-tdd.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
