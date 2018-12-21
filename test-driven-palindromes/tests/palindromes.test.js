@@ -9,4 +9,7 @@ describe("palindromes()", () => {
   it("converts the given string to lowercase", () => {
     expect(palindromes("mAdAm")).toEqual(["madam"]);
   });
+  it("removes all non-letter characters", () => {
+    expect(palindromes("m a d a m!")).toEqual(["madam"]);
+  });
 });
