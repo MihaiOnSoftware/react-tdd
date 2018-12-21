@@ -1,6 +1,6 @@
 // index.js
 module.exports = (num) => {
-  if (num > 100) return "Please give me a number from 1 to 100!";
+  if (num > 100 || num < 1) return "Please give me a number from 1 to 100!";
   return fizzBuzz(num);
 
   function fizz(num) {

@@ -20,4 +20,7 @@ describe('fizzBuzz()', () => {
   it("only accepts numbers 100 or less", () => {
     expect(fizzBuzz(101)).toBe("Please give me a number from 1 to 100!");
   });
+  it("only accepts number 1 or greater", () => {
+    expect(fizzBuzz(0)).toBe("Please give me a number from 1 to 100!");
+  });
 })
