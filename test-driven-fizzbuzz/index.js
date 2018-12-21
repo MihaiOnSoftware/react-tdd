@@ -1,5 +1,7 @@
 // index.js
 module.exports = (num) => {
+  if (num > 100) return "Please give me a number from 1 to 100!";
+
   fizzBuzz = fizz(num) + buzz(num);
 
   if(fizzBuzz) return fizzBuzz;
