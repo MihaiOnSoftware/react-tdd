@@ -15,13 +15,13 @@ module.exports = string => {
   };
 
   const edges = string => {
-    var pairs = [];
+    var edges = [];
     for (var start = 0; start < string.length; start++) {
       for (var end = string.length; end > start + 1; end--) {
-        pairs.push([start, end]);
+        edges.push([start, end]);
       }
     }
-    return pairs;
+    return edges;
   };
 
   const start = edges => edges[0];
@@ -52,7 +52,6 @@ module.exports = string => {
     };
 
     var allPalindromes = edges(string).reduce(accumulatePalindromes, []);
-
     return stringify(string, allPalindromes);
   };
 
