@@ -1,7 +1,11 @@
 // palindromes.js
 module.exports = string => {
+  const stripNonAlphabetical = string => {
+    return string.replace(/[^a-z]/g, "");
+  };
+
   const cleanString = string => {
-    return string.toLowerCase().replace(/[^a-z]/g, "");
+    return stripNonAlphabetical(string.toLowerCase());
   };
 
   const isPalindromeRecursive = (string, stillPalindrome) => {
