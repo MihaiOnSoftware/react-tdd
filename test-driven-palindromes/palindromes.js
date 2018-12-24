@@ -31,7 +31,7 @@ module.exports = string => {
   const findPalindromes = string => {
     var allSubStrings = substrings(string);
 
-    const reducer = (palindromes, edges) => {
+    const accumulatePalindromes = (palindromes, edges) => {
       var substring = string.substr(start(edges), end(edges));
       if (
         (palindromes.length == 0 || end(last(palindromes)) < end(edges)) &&
@@ -42,7 +42,7 @@ module.exports = string => {
       return palindromes;
     };
 
-    var allPalindromes = allSubStrings.reduce(reducer, []);
+    var allPalindromes = allSubStrings.reduce(accumulatePalindromes, []);
 
     var allPalindromeStrings = allPalindromes.map(palindrome => {
       return string.substr(palindrome[0], palindrome[1]);
