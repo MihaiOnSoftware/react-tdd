@@ -24,14 +24,17 @@ module.exports = string => {
     return pairs;
   };
 
+  const start = edges => edges[0];
+  const end = edges => edges[1];
+  const last = array => array[array.length - 1];
+
   const findPalindromes = string => {
     var allSubStrings = substrings(string);
 
     const reducer = (accumulator, current) => {
-      var substring = string.substr(current[0], current[1]);
+      var substring = string.substr(start(current), end(current));
       if (
-        (accumulator.length == 0 ||
-          accumulator[accumulator.length - 1][1] < current[1]) &&
+        (accumulator.length == 0 || end(last(accumulator)) < end(current)) &&
         isPalindrome(substring)
       ) {
         accumulator.push(current);
