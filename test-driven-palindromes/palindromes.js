@@ -32,7 +32,7 @@ module.exports = string => {
   const end = edges => edges[1];
   const last = array => array[array.length - 1];
 
-  const isSubPalindrome = (palindromes, end, last, edges) => {
+  const independentPalindrome = (palindromes, end, last, edges) => {
     return palindromes.length == 0 || end(last(palindromes)) < end(edges);
   };
 
@@ -50,7 +50,7 @@ module.exports = string => {
     };
 
     const accumulatePalindromes = (palindromes, edges) => {
-      if (isSubPalindrome(palindromes, end, last, edges)) {
+      if (independentPalindrome(palindromes, end, last, edges)) {
         return addPalindrome(palindromes, edges);
       } else return palindromes;
     };
