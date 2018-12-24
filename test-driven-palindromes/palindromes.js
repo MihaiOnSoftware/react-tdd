@@ -28,13 +28,17 @@ module.exports = string => {
   const end = edges => edges[1];
   const last = array => array[array.length - 1];
 
+  const isSubPalindrome = (palindromes, end, last, edges) => {
+    return palindromes.length == 0 || end(last(palindromes)) < end(edges);
+  };
+
   const findPalindromes = string => {
     var allSubStrings = substrings(string);
 
     const accumulatePalindromes = (palindromes, edges) => {
       var substring = string.substr(start(edges), end(edges));
       if (
-        (palindromes.length == 0 || end(last(palindromes)) < end(edges)) &&
+        isSubPalindrome(palindromes, end, last, edges) &&
         isPalindrome(substring)
       ) {
         palindromes.push(edges);
