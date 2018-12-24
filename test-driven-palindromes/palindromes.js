@@ -8,10 +8,16 @@ module.exports = string => {
     return stripNonAlphabetical(string.toLowerCase());
   };
 
+  const equalEnds = string => {
+    return string.charAt(0) == string.charAt(string.length - 1);
+  };
+
   const isPalindromeRecursive = (string, stillPalindrome) => {
     if (!stillPalindrome || !string) return stillPalindrome;
-    var equal = string.charAt(0) == string.charAt(string.length - 1);
-    return isPalindromeRecursive(string.substr(1, string.length - 2), equal);
+    return isPalindromeRecursive(
+      string.substr(1, string.length - 2),
+      equalEnds(string)
+    );
   };
 
   const isPalindrome = string => {
