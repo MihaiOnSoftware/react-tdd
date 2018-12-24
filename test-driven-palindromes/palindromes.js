@@ -44,13 +44,12 @@ module.exports = string => {
     );
   };
 
-  const findPalindromes = string => {
-    const accumulatePalindromes = (palindromes, palindrome) => {
-      if (validPalindrome(palindromes, palindrome))
-        palindromes.push(palindrome);
-      return palindromes;
-    };
+  const accumulatePalindromes = (palindromes, palindrome) => {
+    if (validPalindrome(palindromes, palindrome)) palindromes.push(palindrome);
+    return palindromes;
+  };
 
+  const findPalindromes = string => {
     return possiblePalindromes(string)
       .reduce(accumulatePalindromes, [])
       .map(substring);
