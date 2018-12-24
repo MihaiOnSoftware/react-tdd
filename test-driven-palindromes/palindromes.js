@@ -19,10 +19,12 @@ module.exports = string => {
   };
 
   const isPalindromeRecursive = (string, stillPalindrome) => {
-    return (
-      stillPalindrome &&
-      (!string || isPalindromeRecursive(newEnds(string), equalEnds(string)))
-    );
+    if (!string) return stillPalindrome;
+    else
+      return (
+        stillPalindrome &&
+        isPalindromeRecursive(newEnds(string), equalEnds(string))
+      );
   };
 
   const isPalindrome = string => {
