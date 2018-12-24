@@ -12,12 +12,13 @@ module.exports = string => {
     return string.charAt(0) == string.charAt(string.length - 1);
   };
 
+  const newEnds = string => {
+    return string.substr(1, string.length - 2);
+  };
+
   const isPalindromeRecursive = (string, stillPalindrome) => {
     if (!stillPalindrome || !string) return stillPalindrome;
-    return isPalindromeRecursive(
-      string.substr(1, string.length - 2),
-      equalEnds(string)
-    );
+    return isPalindromeRecursive(newEnds(string), equalEnds(string));
   };
 
   const isPalindrome = string => {
