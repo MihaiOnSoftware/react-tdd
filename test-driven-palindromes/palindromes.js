@@ -31,15 +31,15 @@ module.exports = string => {
   const findPalindromes = string => {
     var allSubStrings = substrings(string);
 
-    const reducer = (accumulator, current) => {
-      var substring = string.substr(start(current), end(current));
+    const reducer = (palindromes, edges) => {
+      var substring = string.substr(start(edges), end(edges));
       if (
-        (accumulator.length == 0 || end(last(accumulator)) < end(current)) &&
+        (palindromes.length == 0 || end(last(palindromes)) < end(edges)) &&
         isPalindrome(substring)
       ) {
-        accumulator.push(current);
+        palindromes.push(edges);
       }
-      return accumulator;
+      return palindromes;
     };
 
     var allPalindromes = allSubStrings.reduce(reducer, []);
