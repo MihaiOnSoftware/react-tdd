@@ -13,7 +13,9 @@ module.exports = string => {
   };
 
   const newEnds = string => {
-    return string.substr(1, string.length - 2);
+    var newStart = 1;
+    var length = string.length - newStart - 1;
+    return string.substr(newStart, length);
   };
 
   const isPalindromeRecursive = (string, stillPalindrome) => {
