@@ -18,45 +18,41 @@ module.exports = string => {
     return isPalindromeRecursive(string, true);
   };
 
-  const edges = string => {
-    var edges = [];
+  const possiblePalindromes = string => {
+    var palindromes = [];
     for (var start = 0; start < string.length; start++) {
       for (var end = string.length; end > start + 1; end--) {
-        edges.push([start, end]);
+        palindromes.push([end, string.substr(start, end)]);
       }
     }
-    return edges;
+    return palindromes;
   };
 
-  const start = edges => edges[0];
-  const end = edges => edges[1];
+  const end = palindrome => palindrome[0];
+  const substring = palindrome => palindrome[1];
   const last = array => array[array.length - 1];
 
-  const independentPalindrome = (palindromes, end, last, edges) => {
-    return palindromes.length == 0 || end(last(palindromes)) < end(edges);
+  const independentPalindrome = (palindromes, palindrome) => {
+    return palindromes.length == 0 || end(last(palindromes)) < end(palindrome);
   };
 
-  const stringify = (string, palindromes) => {
-    return palindromes.map(palindrome => {
-      return string.substr(palindrome[0], palindrome[1]);
-    });
+  const validPalindrome = (palindromes, palindrome) => {
+    return (
+      independentPalindrome(palindromes, palindrome) &&
+      isPalindrome(substring(palindrome))
+    );
   };
 
   const findPalindromes = string => {
-    const addPalindrome = (palindromes, edges) => {
-      var substring = string.substr(start(edges), end(edges));
-      if (isPalindrome(substring)) palindromes.push(edges);
+    const accumulatePalindromes = (palindromes, palindrome) => {
+      if (validPalindrome(palindromes, palindrome))
+        palindromes.push(palindrome);
       return palindromes;
     };
 
-    const accumulatePalindromes = (palindromes, edges) => {
-      if (independentPalindrome(palindromes, end, last, edges)) {
-        return addPalindrome(palindromes, edges);
-      } else return palindromes;
-    };
-
-    var allPalindromes = edges(string).reduce(accumulatePalindromes, []);
-    return stringify(string, allPalindromes);
+    return possiblePalindromes(string)
+      .reduce(accumulatePalindromes, [])
+      .map(substring);
   };
 
   var cleaned = cleanString(string);
