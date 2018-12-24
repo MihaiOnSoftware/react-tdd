@@ -14,7 +14,7 @@ module.exports = string => {
     return isPalindromeRecursive(string, true);
   };
 
-  const substrings = string => {
+  const edges = string => {
     var pairs = [];
     for (var start = 0; start < string.length; start++) {
       for (var end = string.length; end > start + 1; end--) {
@@ -32,9 +32,13 @@ module.exports = string => {
     return palindromes.length == 0 || end(last(palindromes)) < end(edges);
   };
 
-  const findPalindromes = string => {
-    var allSubStrings = substrings(string);
+  const stringify = (string, palindromes) => {
+    return palindromes.map(palindrome => {
+      return string.substr(palindrome[0], palindrome[1]);
+    });
+  };
 
+  const findPalindromes = string => {
     const addPalindrome = (palindromes, edges) => {
       var substring = string.substr(start(edges), end(edges));
       if (isPalindrome(substring)) palindromes.push(edges);
@@ -47,13 +51,9 @@ module.exports = string => {
       } else return palindromes;
     };
 
-    var allPalindromes = allSubStrings.reduce(accumulatePalindromes, []);
+    var allPalindromes = edges(string).reduce(accumulatePalindromes, []);
 
-    var allPalindromeStrings = allPalindromes.map(palindrome => {
-      return string.substr(palindrome[0], palindrome[1]);
-    });
-
-    return allPalindromeStrings;
+    return stringify(string, allPalindromes);
   };
 
   var cleaned = cleanString(string);
