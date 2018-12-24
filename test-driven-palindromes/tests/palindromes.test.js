@@ -20,9 +20,14 @@ describe("palindromes()", () => {
       "amanaplanacanalpanama",
     ]);
   });
-  it("detects palindromes inside a string", () => {
+  it("detects a palindrome inside a string", () => {
     var input = "What number is never odd or even, asked the Sphinx?";
     var result = palindromes(input);
     expect(result).toEqual(["neveroddoreven"]);
+  });
+  it("detects multiple palindromes inside a string", () => {
+    var input = "Madam! A cat tacked a pin.";
+    var result = palindromes(input);
+    expect(result).toEqual(["madam", "ama", "aca", "cattac"]);
   });
 });
