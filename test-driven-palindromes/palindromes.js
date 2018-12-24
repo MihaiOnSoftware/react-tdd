@@ -12,7 +12,7 @@ module.exports = string => {
     return string.charAt(0) == string.charAt(string.length - 1);
   };
 
-  const newEnds = string => {
+  const dropEnds = string => {
     var newStart = 1;
     var length = string.length - newStart - 1;
     return string.substr(newStart, length);
@@ -23,7 +23,7 @@ module.exports = string => {
     else
       return (
         stillPalindrome &&
-        isPalindromeRecursive(newEnds(string), equalEnds(string))
+        isPalindromeRecursive(dropEnds(string), equalEnds(string))
       );
   };
 
