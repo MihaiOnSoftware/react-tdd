@@ -35,15 +35,16 @@ module.exports = string => {
   const findPalindromes = string => {
     var allSubStrings = substrings(string);
 
-    const accumulatePalindromes = (palindromes, edges) => {
+    const addPalindrome = (palindromes, edges) => {
       var substring = string.substr(start(edges), end(edges));
-      if (
-        isSubPalindrome(palindromes, end, last, edges) &&
-        isPalindrome(substring)
-      ) {
-        palindromes.push(edges);
-      }
+      if (isPalindrome(substring)) palindromes.push(edges);
       return palindromes;
+    };
+
+    const accumulatePalindromes = (palindromes, edges) => {
+      if (isSubPalindrome(palindromes, end, last, edges)) {
+        return addPalindrome(palindromes, edges);
+      } else return palindromes;
     };
 
     var allPalindromes = allSubStrings.reduce(accumulatePalindromes, []);
