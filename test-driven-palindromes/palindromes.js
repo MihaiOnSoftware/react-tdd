@@ -8,7 +8,7 @@ module.exports = string => {
     return stripNonAlphabetical(string.toLowerCase());
   };
 
-  const equalEnds = string => {
+  const isStringWithEqualEnds = string => {
     return string.charAt(0) == string.charAt(string.length - 1);
   };
 
@@ -18,36 +18,41 @@ module.exports = string => {
     return string.substr(newStart, length);
   };
 
-  const isPalindromeRecursive = (string, stillPalindrome) => {
-    if (!string) return stillPalindrome;
-    else
+  const isPalindrome = string => {
+    function innerPalindromeCheck(string, stillPalindrome) {
+      var recursionDone = !string;
       return (
         stillPalindrome &&
-        isPalindromeRecursive(dropEnds(string), equalEnds(string))
+        (recursionDone ||
+          innerPalindromeCheck(dropEnds(string), isStringWithEqualEnds(string)))
       );
+    }
+    return innerPalindromeCheck(string, true);
   };
 
-  const isPalindrome = string => {
-    return isPalindromeRecursive(string, true);
-  };
+  const palindrome = (endPosition, substring) => [endPosition, substring];
 
   const possiblePalindromes = string => {
     var palindromes = [];
     for (var start = 0; start < string.length; start++) {
       for (var end = string.length; end > start + 1; end--) {
-        palindromes.push([end, string.substr(start, end - start)]);
+        const substring = string.substr(start, end - start);
+        palindromes.push(palindrome(end, substring));
       }
     }
     return palindromes;
   };
 
-  const end = palindrome => palindrome[0];
+  const endPosition = palindrome => palindrome[0];
   const substring = palindrome => palindrome[1];
-  const last = array => array[array.length - 1];
+  const lastElement = array => array[array.length - 1];
   const isEmpty = array => array.length == 0;
 
   const independentPalindrome = (palindromes, palindrome) => {
-    return isEmpty(palindromes) || end(last(palindromes)) < end(palindrome);
+    return (
+      isEmpty(palindromes) ||
+      endPosition(lastElement(palindromes)) < endPosition(palindrome)
+    );
   };
 
   const validPalindrome = (palindromes, palindrome) => {
@@ -57,14 +62,14 @@ module.exports = string => {
     );
   };
 
-  const accumulatePalindromes = (palindromes, palindrome) => {
+  const accumulateValidPalindromes = (palindromes, palindrome) => {
     if (validPalindrome(palindromes, palindrome)) palindromes.push(palindrome);
     return palindromes;
   };
 
   const findPalindromes = string => {
     return possiblePalindromes(string)
-      .reduce(accumulatePalindromes, [])
+      .reduce(accumulateValidPalindromes, [])
       .map(substring);
   };
 
