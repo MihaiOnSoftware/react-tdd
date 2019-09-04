@@ -41,13 +41,16 @@ module.exports = string => {
     return palindromes;
   };
 
-  const end = palindrome => palindrome[0];
+  const endPosition = palindrome => palindrome[0];
   const substring = palindrome => palindrome[1];
-  const last = array => array[array.length - 1];
+  const lastElement = array => array[array.length - 1];
   const isEmpty = array => array.length == 0;
 
   const independentPalindrome = (palindromes, palindrome) => {
-    return isEmpty(palindromes) || end(last(palindromes)) < end(palindrome);
+    return (
+      isEmpty(palindromes) ||
+      endPosition(lastElement(palindromes)) < endPosition(palindrome)
+    );
   };
 
   const validPalindrome = (palindromes, palindrome) => {
