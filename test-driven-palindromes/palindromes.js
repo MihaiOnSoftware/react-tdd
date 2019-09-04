@@ -31,11 +31,13 @@ module.exports = string => {
     return isPalindromeRecursive(string, true);
   };
 
+  const palindrome = (endPosition, substring) => [endPosition, substring];
+
   const possiblePalindromes = string => {
     var palindromes = [];
     for (var start = 0; start < string.length; start++) {
       for (var end = string.length; end > start + 1; end--) {
-        palindromes.push([end, string.substr(start, end - start)]);
+        palindromes.push(palindrome(end, string.substr(start, end - start)));
       }
     }
     return palindromes;
