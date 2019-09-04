@@ -1,4 +1,6 @@
 // palindromes.js
+const Palindrome = require("./palindromes");
+
 module.exports = string => {
   const stripNonAlphabetical = string => {
     return string.replace(/[^a-z]/g, "");
