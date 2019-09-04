@@ -1,5 +1,5 @@
 // palindromes.js
-const Palindrome = require("./palindromes");
+const Palindrome = require("./palindrome.js");
 
 module.exports = string => {
   const stripNonAlphabetical = string => {
@@ -38,14 +38,15 @@ module.exports = string => {
   const independentPalindrome = (palindromes, palindrome) => {
     return (
       isEmpty(palindromes) ||
-      endPosition(lastElement(palindromes)) < endPosition(palindrome)
+      Palindrome.endPosition(lastElement(palindromes)) <
+        Palindrome.endPosition(palindrome)
     );
   };
 
   const validPalindrome = (palindromes, palindrome) => {
     return (
       independentPalindrome(palindromes, palindrome) &&
-      isPalindrome(substring(palindrome))
+      isPalindrome(Palindrome.substring(palindrome))
     );
   };
 
@@ -54,16 +55,12 @@ module.exports = string => {
     return palindromes;
   };
 
-  const palindrome = (endPosition, substring) => [endPosition, substring];
-  const endPosition = palindrome => palindrome[0];
-  const substring = palindrome => palindrome[1];
-
   const possiblePalindromes = string => {
     var palindromes = [];
     for (var start = 0; start < string.length; start++) {
       for (var end = string.length; end > start + 1; end--) {
         const substring = string.substr(start, end - start);
-        palindromes.push(palindrome(end, substring));
+        palindromes.push(Palindrome.create(end, substring));
       }
     }
     return palindromes;
@@ -72,7 +69,7 @@ module.exports = string => {
   const findPalindromes = string => {
     return possiblePalindromes(string)
       .reduce(accumulateValidPalindromes, [])
-      .map(substring);
+      .map(Palindrome.substring);
   };
 
   var cleaned = cleanString(string);
