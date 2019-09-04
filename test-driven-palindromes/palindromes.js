@@ -8,7 +8,7 @@ module.exports = string => {
     return stripNonAlphabetical(string.toLowerCase());
   };
 
-  const equalEnds = string => {
+  const isStringWithEqualEnds = string => {
     return string.charAt(0) == string.charAt(string.length - 1);
   };
 
@@ -18,17 +18,16 @@ module.exports = string => {
     return string.substr(newStart, length);
   };
 
-  const isPalindromeRecursive = (string, stillPalindrome) => {
-    var recursionDone = !string;
-    return (
-      stillPalindrome &&
-      (recursionDone ||
-        isPalindromeRecursive(dropEnds(string), equalEnds(string)))
-    );
-  };
-
   const isPalindrome = string => {
-    return isPalindromeRecursive(string, true);
+    function innerPalindromeCheck(string, stillPalindrome) {
+      var recursionDone = !string;
+      return (
+        stillPalindrome &&
+        (recursionDone ||
+          innerPalindromeCheck(dropEnds(string), isStringWithEqualEnds(string)))
+      );
+    }
+    return innerPalindromeCheck(string, true);
   };
 
   const palindrome = (endPosition, substring) => [endPosition, substring];
