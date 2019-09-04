@@ -62,14 +62,14 @@ module.exports = string => {
     );
   };
 
-  const accumulatePalindromes = (palindromes, palindrome) => {
+  const accumulateValidPalindromes = (palindromes, palindrome) => {
     if (validPalindrome(palindromes, palindrome)) palindromes.push(palindrome);
     return palindromes;
   };
 
   const findPalindromes = string => {
     return possiblePalindromes(string)
-      .reduce(accumulatePalindromes, [])
+      .reduce(accumulateValidPalindromes, [])
       .map(substring);
   };
 
