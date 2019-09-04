@@ -1,5 +1,6 @@
 // palindromes.js
 const Palindrome = require("./palindrome.js");
+const isPalindrome = require("./isPalindrome.js");
 
 module.exports = string => {
   const stripNonAlphabetical = string => {
@@ -8,28 +9,6 @@ module.exports = string => {
 
   const cleanString = string => {
     return stripNonAlphabetical(string.toLowerCase());
-  };
-
-  const isStringWithEqualEnds = string => {
-    return string.charAt(0) == string.charAt(string.length - 1);
-  };
-
-  const dropEnds = string => {
-    var newStart = 1;
-    var length = string.length - newStart - 1;
-    return string.substr(newStart, length);
-  };
-
-  const isPalindrome = string => {
-    function innerPalindromeCheck(string, stillPalindrome) {
-      var recursionDone = !string;
-      return (
-        stillPalindrome &&
-        (recursionDone ||
-          innerPalindromeCheck(dropEnds(string), isStringWithEqualEnds(string)))
-      );
-    }
-    return innerPalindromeCheck(string, true);
   };
 
   const lastElement = array => array[array.length - 1];
