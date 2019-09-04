@@ -30,21 +30,6 @@ module.exports = string => {
     return innerPalindromeCheck(string, true);
   };
 
-  const palindrome = (endPosition, substring) => [endPosition, substring];
-
-  const possiblePalindromes = string => {
-    var palindromes = [];
-    for (var start = 0; start < string.length; start++) {
-      for (var end = string.length; end > start + 1; end--) {
-        const substring = string.substr(start, end - start);
-        palindromes.push(palindrome(end, substring));
-      }
-    }
-    return palindromes;
-  };
-
-  const endPosition = palindrome => palindrome[0];
-  const substring = palindrome => palindrome[1];
   const lastElement = array => array[array.length - 1];
   const isEmpty = array => array.length == 0;
 
@@ -64,6 +49,21 @@ module.exports = string => {
 
   const accumulateValidPalindromes = (palindromes, palindrome) => {
     if (validPalindrome(palindromes, palindrome)) palindromes.push(palindrome);
+    return palindromes;
+  };
+
+  const palindrome = (endPosition, substring) => [endPosition, substring];
+  const endPosition = palindrome => palindrome[0];
+  const substring = palindrome => palindrome[1];
+
+  const possiblePalindromes = string => {
+    var palindromes = [];
+    for (var start = 0; start < string.length; start++) {
+      for (var end = string.length; end > start + 1; end--) {
+        const substring = string.substr(start, end - start);
+        palindromes.push(palindrome(end, substring));
+      }
+    }
     return palindromes;
   };
 
